@@ -1,7 +1,7 @@
 'use strict';
 
 const fs = require('fs');
-const path = require('path');
+//const path = require('path');
 const headers = require('./headers.js');
 
 const STATIC_PATH =  './static';

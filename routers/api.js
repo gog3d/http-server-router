@@ -4,15 +4,34 @@ const fs = require('fs');
 const path = require('path');
 const api = require('../lib/api.js');
 const headers = require('./headers.js');
+const timers = require('timers');
 
-const STATIC_PATH =  './static';
+const API_PATH = './api';
 
-module.exports = (req) => {
+//api.load(API_PATH).then();
+
+(async()=>{
+  await api.load(API_PATH);
   console.dir({ api });
+})();
+
+module.exports = async (req) => {
   const url = req.url;
-  console.log(`api url ${url}`);
-  const data = JSON.stringify(`api url ${url}`);
-  const dataType = 'json';
-  const header = headers(dataType);
-  return { data, header };
+  const urlArr = url.split('/');
+  const apiName = urlArr[2];
+  const reqData = urlArr[3];
+  //console.dir({ api });
+  try {
+    const method = api.get(apiName);
+    const methodData = await method('hello');
+    const data = JSON.stringify(methodData);
+    const dataType = 'json';
+    const header = headers(dataType);
+    return { data, header };
+  } catch (error) {
+    const data = JSON.stringify(`api url ${url} ERROR ${error}`);
+    const dataType = 'json';
+    const header = headers(dataType);
+    return { data, header };
+  }
 };

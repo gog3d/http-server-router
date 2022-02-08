@@ -2,10 +2,13 @@
 
 const http = require('http');
 const router = require('./lib/router.js');
-
+const apiLoad = require('./lib/api.js');
 const PORT = 8000;
 
+
+
 const server = http.createServer(async (req, res) => {
+  //const api = await apiLoad.load('./api');
   const url = req.url;
   console.dir({ url });
   try {
