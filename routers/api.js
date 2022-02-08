@@ -3,14 +3,13 @@
 const fs = require('fs');
 const path = require('path');
 const api = require('../lib/api.js');
-const headers = require('./headers.js');
-const timers = require('timers');
+const headers = require('../lib/headers.js');
 
 const API_PATH = './api';
+console.dir(folderPath);
 
-//api.load(API_PATH).then();
 
-(async()=>{
+(async () => {
   await api.load(API_PATH);
   console.dir({ api });
 })();
@@ -20,7 +19,6 @@ module.exports = async (req) => {
   const urlArr = url.split('/');
   const apiName = urlArr[2];
   const reqData = urlArr[3];
-  //console.dir({ api });
   try {
     const method = api.get(apiName);
     const methodData = await method('hello');
