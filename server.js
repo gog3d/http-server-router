@@ -2,7 +2,14 @@
 
 const http = require('http');
 const router = require('./lib/router.js');
+
 const PORT = 8000;
+
+const options = {
+  host: '127.0.0.1',
+  port: 8000,
+};
+
 
 const server = http.createServer(async (req, res) => {
   const url = req.url;
@@ -17,6 +24,6 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-server.listen(PORT, () => {
+server.listen(options, () => {
   console.log(`server run on ${PORT}`);
 });

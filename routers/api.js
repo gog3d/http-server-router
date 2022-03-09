@@ -6,7 +6,7 @@ const api = require('../lib/api.js');
 const headers = require('../lib/headers.js');
 
 const API_PATH = './api';
-console.dir(folderPath);
+console.dir(API_PATH);
 
 
 (async () => {
